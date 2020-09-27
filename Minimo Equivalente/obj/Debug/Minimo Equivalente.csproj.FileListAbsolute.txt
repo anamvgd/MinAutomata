@@ -8,3 +8,13 @@ C:\Users\crisc\OneDrive\Escritorio\ICESI\Informatica Teorica\Minimo Equivalente\
 C:\Users\crisc\OneDrive\Escritorio\ICESI\Informatica Teorica\Minimo Equivalente\Minimo Equivalente\obj\Debug\Minimo Equivalente.csproj.CoreCompileInputs.cache
 C:\Users\crisc\OneDrive\Escritorio\ICESI\Informatica Teorica\Minimo Equivalente\Minimo Equivalente\obj\Debug\Minimo Equivalente.exe
 C:\Users\crisc\OneDrive\Escritorio\ICESI\Informatica Teorica\Minimo Equivalente\Minimo Equivalente\obj\Debug\Minimo Equivalente.pdb
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\bin\Debug\Minimo Equivalente.exe.config
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\bin\Debug\Minimo Equivalente.exe
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\bin\Debug\Minimo Equivalente.pdb
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo Equivalente.csprojAssemblyReference.cache
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo_Equivalente.Automata.resources
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo_Equivalente.Properties.Resources.resources
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo Equivalente.csproj.GenerateResource.cache
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo Equivalente.csproj.CoreCompileInputs.cache
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo Equivalente.exe
+C:\Users\Ana\Source\Repos\MinAutomata\Minimo Equivalente\obj\Debug\Minimo Equivalente.pdb

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,14 @@ namespace Minimo_Equivalente
     class State
     {
 		private int number;
+		private String typeMachine;
 
-		private State[] paths;
-		private String[] alphabet;
+		private ArrayList adjacents = new ArrayList();
 
-		public State(int number)
+		public State(int number, String typeMachine)
 		{
 			this.number = number;
+			this.typeMachine = typeMachine;
 		}
 
 		public int getNumber()
@@ -29,26 +31,32 @@ namespace Minimo_Equivalente
 			this.number = number;
 		}
 
-		public State[] getPaths()
+		public String getType()
 		{
-			return paths;
+			return typeMachine;
 		}
 
 
-		public void setPaths(State[] paths)
+		public void setType(String typeMachine)
 		{
-			this.paths = paths;
-		}
-
-		public String[] getAlphabet()
-		{
-			return alphabet;
+			this.typeMachine = typeMachine;
 		}
 
 
-		public void setAlphabet(String[] alphabet)
+		public ArrayList getAdjacents()
 		{
-			this.alphabet = alphabet;
+			return adjacents;
 		}
+
+
+		public void setAdjacents(ArrayList adjacents)
+		{
+			this.adjacents = adjacents;
+		}
+
+		public void addPath(Path path)
+        {
+			adjacents.Add(path);
+        }
 	}
 }

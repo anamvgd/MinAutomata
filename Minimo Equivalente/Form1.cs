@@ -14,6 +14,10 @@ namespace Minimo_Equivalente
     public partial class Automata : Form
     {
 
+        private Machine m;
+        private int max;
+        private int pathsAdded;
+
         public Automata()
         {
             InitializeComponent();
@@ -63,6 +67,15 @@ namespace Minimo_Equivalente
 
         private void create_Click(object sender, EventArgs e)
         {
+
+            m = new Machine(int.Parse(stateNumber.Text), type.Text);
+
+            string alp = alphabet.Text;
+            string[] alph = alp.Split(',');
+
+            max = int.Parse(stateNumber.Text) * alph.Count();
+            pathsAdded = 0;
+
             type.Enabled = false;
             stateNumber.Enabled = false;
             alphabet.Enabled = false;
@@ -73,6 +86,29 @@ namespace Minimo_Equivalente
             exit.Enabled = true;
             add.Enabled = true;
             create_table();
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+
+
+            State initial = m.getState(int.Parse(initialState.Text));
+            State destination = m.getState(int.Parse(finalstate.Text));
+
+            Path p = new Path(initial, destination, entry.Text, exit.Text);
+
+            initial.addPath(p);
+            pathsAdded++;
+
+            if (pathsAdded == max)
+            {
+                initialState.Enabled = false;
+                finalstate.Enabled = false;
+                entry.Enabled = false;
+                exit.Enabled = false;
+                add.Enabled = false;
+
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Minimo_Equivalente
         [STAThread]
         static void Main()
         {
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Automata());
