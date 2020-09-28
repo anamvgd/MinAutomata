@@ -13,7 +13,14 @@ namespace Minimo_Equivalente
         private State destination;
         private String input;
         private String output;
-
+        /*
+			* This method creates a new path that connects two states
+			* <b>pre:</b> the states initial and destination has to be created
+			* @param a state that is the initial state 
+			* @param a state that is the destination state where the path takes to
+			* @param a string input that is defined by the language 
+			* @param a string output that is the result where takes the destination state
+		*/
         public Path(State origin, State destination, String input, String output)
         {
             this.origin = origin;

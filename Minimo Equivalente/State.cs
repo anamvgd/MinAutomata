@@ -5,24 +5,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minimo_Equivalente
+/*
+     * This class is created to represent the states that will be part of the machine.
+     */
+class State
 {
-    class State
-    {
-		private int number;
-		private String typeMachine;
-		private String output;
+	/*
+	 * This attribute represents what number of state each one represents
+	*/
+	private int number;
+	/*
+	 * This attribute represents the type of the machine in which will be added the state
+	*/
+	private String typeMachine;
+	/*
+	 * This attribute represents the output of the state when its a Moore machine
+	*/
+	private String output;
 
-		private ArrayList adjacents = new ArrayList();
+	private ArrayList adjacents = new ArrayList();
 
-		public State(int number, String typeMachine)
-		{
-			this.number = number;
-			this.typeMachine = typeMachine;
-		
-		}
+	/*
+		* This method creates a new state for the machine
+		* @param int number that represents the number of the state
+		* @param string type machine that defines the machine which belong the state
+	*/
+	public State(int number, String typeMachine)
+	{
+		this.number = number;
+		this.typeMachine = typeMachine;
 
-		public String getOutput()
+	}
+
+
+	public String getOutput()
 		{
 			return output;
 		}

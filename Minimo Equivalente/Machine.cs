@@ -10,6 +10,11 @@ namespace Minimo_Equivalente
     class Machine
     {
         private ArrayList states = new ArrayList();
+        /*
+			* This method creates a new machine with a list of states 
+			* @param a number of states to define the size of the machine
+			* @param a string that defines the type of the machine 
+		*/
 
         public Machine(int numberStates, String type)
         {
@@ -29,7 +34,10 @@ namespace Minimo_Equivalente
         {
             return states;
         }
-
+        /*
+           * This method modifies an existing machine an finds its irrelevant states and deletes them
+           * <b>pre:</b> the machine exists and has states and paths created
+       */
         public void bfs()
         {
             State state = (State)states[0];
@@ -51,6 +59,12 @@ namespace Minimo_Equivalente
 
             states = conectedStates;
         }
+        /*
+                    * This method validates if the states belong to a same partition or not 
+                    * @param a state one that is the one to compare with others
+                    * @param a state two that is the one to compare with others
+                    * @param a list of partitions to divide the necessary states
+                */
 
         public Boolean belong(State one, State two, ArrayList partitions)
         {
