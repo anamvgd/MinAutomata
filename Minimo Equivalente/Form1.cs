@@ -27,7 +27,7 @@ namespace Minimo_Equivalente
             InitializeComponent();
         }
 
-        private void create_table()
+        /*private void create_table()
         {
             int states = int.Parse(stateNumber.Text);
             string alp = alphabet.Text;
@@ -52,7 +52,7 @@ namespace Minimo_Equivalente
         {
             Label a = new Label();
             
-            /*for (int i=0; i<alph.Length; i++) 
+            for (int i=0; i<alph.Length; i++) 
             {
                 table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
                 table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -66,8 +66,8 @@ namespace Minimo_Equivalente
             {
                 table.RowStyles.Add(new System.Windows.Forms.RowStyle());
                 table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            }*/
-        }
+            }
+        }*/
 
         private void create_Click(object sender, EventArgs e)
         {
@@ -91,13 +91,12 @@ namespace Minimo_Equivalente
             entry.Enabled = true;
             exit.Enabled = true;
             add.Enabled = true;
-            create_table();
+            //create_table();
             
         }
 
         private void add_Click(object sender, EventArgs e)
         {
-
 
             State initial = m.getState(int.Parse(initialState.Text));
             State destination = m.getState(int.Parse(finalstate.Text));
@@ -122,38 +121,52 @@ namespace Minimo_Equivalente
                 add.Enabled = false;
 
             }
+
+            initialState.Text = "";
+            finalstate.Text = "";
+            entry.Text = "";
+            exit.Text = "";
+
         }
 
         private void minimize_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Entró minimizar");
             //m.bfs();
             if (type.Text.Equals("Moore"))
             {
-                Console.WriteLine("....");
+                Console.WriteLine("Particiones:");
+                Console.WriteLine("------------------------------");
                 ArrayList m = mooreFirstPartition();
-                for(int i=0; i < m.Count;i++)
+                for (int i = 0; i < m.Count; i++)
                 {
                     ArrayList mf = (ArrayList)m[i];
-                    for (int j=0; j < mf.Count; j++)
+                    for (int j = 0; j < mf.Count; j++)
                     {
-                        Console.WriteLine(((State)mf[j]).getNumber());
+                        Console.WriteLine("Q" + ((State)mf[j]).getNumber());
                     }
                     Console.WriteLine("------------------------------");
                 }
-            } else
-            {
-                Console.WriteLine("else");
-                mealyFirstPartition();
             }
-
-           
+            else
+            {
+                Console.WriteLine("Particiones:");
+                Console.WriteLine("------------------------------");
+                ArrayList m = mealyFirstPartition();
+                for (int i = 0; i < m.Count; i++)
+                {
+                    ArrayList mf = (ArrayList)m[i];
+                    for (int j = 0; j < mf.Count; j++)
+                    {
+                        Console.WriteLine("Q" + ((State)mf[j]).getNumber());
+                    }
+                    Console.WriteLine("------------------------------");
+                }
+            }   
 
         }
 
         private ArrayList mooreFirstPartition()
         {
-            Console.WriteLine("Entró first moore");
             ArrayList partitions = new ArrayList();
             
             for(int i=0; i < numOutputs.Count; i++)
@@ -186,10 +199,9 @@ namespace Minimo_Equivalente
 
         }
 
-        private void mealyFirstPartition()
+        private ArrayList mealyFirstPartition()
         {
 
-            Console.WriteLine("Entró first mealy");
             ArrayList partitions = new ArrayList();
 
             for (int i = 0; i < numOutputs.Count; i++)
@@ -220,7 +232,7 @@ namespace Minimo_Equivalente
                 
             }
 
-
+                return partitions;
         }
 
 
@@ -228,7 +240,6 @@ namespace Minimo_Equivalente
         public ArrayList nextPartitions(ArrayList partitions)
         {
 
-            Console.WriteLine("Entró next Partitions");
 
             for (int i = 0; i < m.getStates().Count-1; i++)
             {
