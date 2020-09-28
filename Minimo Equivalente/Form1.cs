@@ -127,7 +127,7 @@ namespace Minimo_Equivalente
         private void minimize_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Entró minimizar");
-            m.bfs();
+            //m.bfs();
             if (type.Text.Equals("Moore"))
             {
                 Console.WriteLine("....");
@@ -143,6 +143,7 @@ namespace Minimo_Equivalente
                 }
             } else
             {
+                Console.WriteLine("else");
                 mealyFirstPartition();
             }
 
@@ -172,7 +173,7 @@ namespace Minimo_Equivalente
                     n++;
                 }
 
-                partitions[n] = s;
+                ((ArrayList)partitions[n]).Add(s);
             }
 
             while(nextPartitions(partitions) != partitions)
@@ -213,7 +214,7 @@ namespace Minimo_Equivalente
                         n++;
                     }
 
-                    partitions[n] = s;
+                    ((ArrayList)partitions[n]).Add(s);
                 }
 
                 
@@ -229,7 +230,7 @@ namespace Minimo_Equivalente
 
             Console.WriteLine("Entró next Partitions");
 
-            for (int i = 0; i < m.getStates().Count; i++)
+            for (int i = 0; i < m.getStates().Count-1; i++)
             {
                 if (m.belong((State)m.getStates()[i], (State)m.getStates()[i + 1], partitions))
                 {
