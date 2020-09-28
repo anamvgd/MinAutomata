@@ -11,6 +11,7 @@ namespace Minimo_Equivalente
     {
 		private int number;
 		private String typeMachine;
+		private String output;
 
 		private ArrayList adjacents = new ArrayList();
 
@@ -18,6 +19,17 @@ namespace Minimo_Equivalente
 		{
 			this.number = number;
 			this.typeMachine = typeMachine;
+		
+		}
+
+		public String getOutput()
+		{
+			return output;
+		}
+
+		public void setOutput(String output)
+		{
+			this.output = output;
 		}
 
 		public int getNumber()

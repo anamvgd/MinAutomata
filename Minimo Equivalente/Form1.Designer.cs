@@ -52,6 +52,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.exit = new System.Windows.Forms.TextBox();
+            this.minimize = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // stateNumber
@@ -304,11 +305,22 @@
             this.exit.Size = new System.Drawing.Size(132, 22);
             this.exit.TabIndex = 21;
             // 
+            // minimize
+            // 
+            this.minimize.Location = new System.Drawing.Point(613, 388);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(106, 34);
+            this.minimize.TabIndex = 24;
+            this.minimize.Text = "Minimizar";
+            this.minimize.UseVisualStyleBackColor = true;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
+            // 
             // Automata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 437);
+            this.ClientSize = new System.Drawing.Size(965, 454);
+            this.Controls.Add(this.minimize);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.exit);
@@ -367,6 +379,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox exit;
+        private System.Windows.Forms.Button minimize;
     }
 }
 

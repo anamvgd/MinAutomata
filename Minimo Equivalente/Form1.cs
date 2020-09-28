@@ -1,8 +1,11 @@
 ﻿using System;
+using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +20,7 @@ namespace Minimo_Equivalente
         private Machine m;
         private int max;
         private int pathsAdded;
+        private ArrayList numOutputs;
 
         public Automata()
         {
@@ -76,6 +80,8 @@ namespace Minimo_Equivalente
             max = int.Parse(stateNumber.Text) * alph.Count();
             pathsAdded = 0;
 
+            numOutputs = new ArrayList();
+
             type.Enabled = false;
             stateNumber.Enabled = false;
             alphabet.Enabled = false;
@@ -86,6 +92,7 @@ namespace Minimo_Equivalente
             exit.Enabled = true;
             add.Enabled = true;
             create_table();
+            
         }
 
         private void add_Click(object sender, EventArgs e)
@@ -96,9 +103,15 @@ namespace Minimo_Equivalente
             State destination = m.getState(int.Parse(finalstate.Text));
 
             Path p = new Path(initial, destination, entry.Text, exit.Text);
+            initial.setOutput(exit.Text);
 
             initial.addPath(p);
             pathsAdded++;
+
+            if (!numOutputs.Contains(exit.Text))
+            {
+                numOutputs.Add(exit.Text);
+            }
 
             if (pathsAdded == max)
             {
@@ -110,5 +123,153 @@ namespace Minimo_Equivalente
 
             }
         }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Entró minimizar");
+            m.bfs();
+            if (type.Text.Equals("Moore"))
+            {
+                Console.WriteLine("....");
+                ArrayList m = mooreFirstPartition();
+                for(int i=0; i < m.Count;i++)
+                {
+                    ArrayList mf = (ArrayList)m[i];
+                    for (int j=0; j < mf.Count; j++)
+                    {
+                        Console.WriteLine(((State)mf[j]).getNumber());
+                    }
+                    Console.WriteLine("------------------------------");
+                }
+            } else
+            {
+                mealyFirstPartition();
+            }
+
+           
+
+        }
+
+        private ArrayList mooreFirstPartition()
+        {
+            Console.WriteLine("Entró first moore");
+            ArrayList partitions = new ArrayList();
+            
+            for(int i=0; i < numOutputs.Count; i++)
+            {
+                ArrayList part = new ArrayList();
+                partitions.Add(part);
+
+            }
+
+            for (int i = 0; i < m.getStates().Count; i++)
+            {
+                State s = (State)m.getStates()[i];
+
+                int n = 0;
+                while (!s.getOutput().Equals(numOutputs[n]))
+                {
+                    n++;
+                }
+
+                partitions[n] = s;
+            }
+
+            while(nextPartitions(partitions) != partitions)
+            {
+
+            }
+
+            return partitions;
+
+
+        }
+
+        private void mealyFirstPartition()
+        {
+
+            Console.WriteLine("Entró first mealy");
+            ArrayList partitions = new ArrayList();
+
+            for (int i = 0; i < numOutputs.Count; i++)
+            {
+                ArrayList part = new ArrayList();
+                partitions.Add(part);
+
+            }
+
+            for (int i = 0; i < m.getStates().Count; i++)
+            {
+
+                ArrayList p = ((State)m.getStates()[i]).getAdjacents();
+
+                for (int j = 0; j < p.Count; j++)
+                {
+                    String s = ((Path)p[j]).getOutput();
+
+                    int n = 0;
+                    while (!s.Equals(numOutputs[n]))
+                    {
+                        n++;
+                    }
+
+                    partitions[n] = s;
+                }
+
+                
+            }
+
+
+        }
+
+
+        
+        public ArrayList nextPartitions(ArrayList partitions)
+        {
+
+            Console.WriteLine("Entró next Partitions");
+
+            for (int i = 0; i < m.getStates().Count; i++)
+            {
+                if (m.belong((State)m.getStates()[i], (State)m.getStates()[i + 1], partitions))
+                {
+                    if(m.sucesores((State)m.getStates()[i], (State)m.getStates()[i + 1]))
+                    {
+
+                    } else
+                    {
+                        State sta = (State)m.getStates()[i + 1];
+
+                        for(int j=0; j < partitions.Count; j++)
+                        {
+                            if (((ArrayList)partitions[j]).Contains((State)m.getStates()[i])){
+
+                                ((ArrayList)partitions[j]).Remove((State)m.getStates()[i]);
+
+                            }
+                        }
+                        
+                        partitions.Add(sta);
+                    }
+                }
+            }
+
+            return partitions;
+        }
+
+
+       /* public void finalPartition(ArrayList fPartition)
+        {
+            Machine fMachine = new Machine(fPartition.Count, type.Text);
+
+            for(int i=0; i < fPartition.Count; i++)
+            {
+                State s = 
+            }
+        }*/
+
+        
+
+
     }
 }
